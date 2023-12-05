@@ -2,7 +2,7 @@ import CategoriesTable from '../../components/admin/categories/categories.table'
 
 
 const CategoriesPage = async() => {
-    const res = await fetch("http://localhost:4000/categories", 
+    const res = await fetch("http://localhost:3001/categories", 
     {
         method: "GET",
         next: {tags: ["list-categories"]}

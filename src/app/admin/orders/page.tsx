@@ -1,7 +1,7 @@
 import OrdersTable from '../../components/admin/orders/orders.table';
 
 const OrdersPage = async () => {
-    const res = await fetch('http://localhost:4000/orders',
+    const res = await fetch('http://localhost:3001/orders',
         {
             method: "GET",
             next: { tags: ["list-orders"] }

@@ -1,7 +1,7 @@
 import styles from "../../../components/admin/products/products.module.css"
 
 const DetailProductPage = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`http://localhost:4000/products/${params.id}`,
+    const res = await fetch(`http://localhost:3001/products/${params.id}`,
         {
             method: "GET",
             next: { tags: ["product-detail"] }

@@ -1,7 +1,7 @@
 import styles from "../../../components/admin/orders/orders.module.css"
 
 const DetailBrandPage = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`http://localhost:4000/orders/${params.id}`,
+    const res = await fetch(`http://localhost:3001/orders/${params.id}`,
         {
             method: "GET",
             next: { tags: ["order-detail"] }

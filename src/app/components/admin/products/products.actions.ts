@@ -4,7 +4,7 @@ import { IProduct } from '../../types/product'
 
 export async function handleCreateProductAction(productData: IProduct): Promise<boolean> {
     try {
-      const response = await fetch(`http://localhost:4000/products`, {
+      const response = await fetch(`http://localhost:3001/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ export async function handleCreateProductAction(productData: IProduct): Promise<
   
 
 export const handleUpdateProductAction = async (data: IProduct) => {
-    const res = await fetch(`http://localhost:4000/products/${data._id}`, {
+    const res = await fetch(`http://localhost:3001/products/${data._id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -42,7 +42,7 @@ export const handleUpdateProductAction = async (data: IProduct) => {
 }
 
 export const handleDeleteProductAction = async (id: string) => {
-    const res = await fetch(`http://localhost:4000/products/${id}`, {
+    const res = await fetch(`http://localhost:3001/products/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
