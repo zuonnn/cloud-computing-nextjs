@@ -3,7 +3,7 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ICategory } from '../../types/category';
 import { handleUpdateCategoryAction } from './categories.actions';
@@ -48,6 +48,13 @@ function UpdateCategoryModal(props: IProps) {
         setCategory(null);
         setShowModalUpdate(false)
     }
+
+    useEffect(() => {
+        if (categoryUpdate) {
+          setName(categoryUpdate.name || '');
+          setDescription(categoryUpdate.description || '');
+        }
+      }, [categoryUpdate]);
 
     return (
         <>

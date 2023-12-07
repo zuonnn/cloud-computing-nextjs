@@ -3,7 +3,7 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { IBrand } from '../../types/brand';
 import { handleUpdateBrandAction } from './brands.actions';
@@ -54,6 +54,14 @@ function UpdateBrandModal(props: IProps) {
         setBrand(null);
         setShowModalUpdate(false)
     }
+
+    useEffect(() => {
+        if (brandUpdate) {
+          setName(brandUpdate.name || '');
+          setCountry(brandUpdate.country || '');
+          setDescription(brandUpdate.description || '');
+        }
+      }, [brandUpdate]);
 
     return (
         <>
