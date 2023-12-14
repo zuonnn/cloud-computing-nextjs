@@ -2,7 +2,7 @@ import BrandsTable from '../../components/admin/brands/brands.table';
 
 
 const BrandsPage = async () => {
-    const res = await fetch("http://localhost:3001/brands",
+    const res = await fetch(`${process.env.BE_URL}/brands`,
         {
             method: "GET",
             next: { tags: ["list-brands"] }

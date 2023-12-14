@@ -1,7 +1,7 @@
 import ProductsTable from '../../components/admin/products/products.table';
 
 const ProductsPage = async () => {
-    const res = await fetch('http://localhost:3001/products',
+    const res = await fetch(`${process.env.BE_URL}/products`,
         {
             method: "GET",
             next: { tags: ["list-products"] }

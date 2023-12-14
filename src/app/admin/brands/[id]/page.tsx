@@ -1,7 +1,7 @@
 import styles from "../../../components/admin/brands/brands.module.css"
 
 const DetailBrandPage = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`http://localhost:3001/brands/${params.id}`,
+    const res = await fetch(`${process.env.BE_URL}/brands/${params.id}`,
         {
             method: "GET",
             next: { tags: ["brand-detail"] }
