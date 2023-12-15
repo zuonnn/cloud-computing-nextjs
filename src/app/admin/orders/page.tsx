@@ -1,7 +1,7 @@
 import OrdersTable from '../../components/admin/orders/orders.table';
 
 const OrdersPage = async () => {
-    const res = await fetch(`${process.env.BE_URL}/orders`,
+    const res = await fetch(`https://duong211404.onrender.com/orders`,
         {
             method: "GET",
             next: { tags: ["list-orders"] }

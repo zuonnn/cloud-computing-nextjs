@@ -4,7 +4,7 @@ import { ICategory } from '../../types/category'
 
 export const handleGetCategories = async (): Promise<ICategory[]> => {
     try {
-      const res = await fetch(`${process.env.BE_URL}/categories`, {
+      const res = await fetch(`https://duong211404.onrender.com/categories`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export const handleGetCategories = async (): Promise<ICategory[]> => {
   };
 
 export const handleCreateCategoryAction = async (data: ICategory) => {
-    const res = await fetch(`${process.env.BE_URL}/categories`, {
+    const res = await fetch(`https://duong211404.onrender.com/categories`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -38,7 +38,7 @@ export const handleCreateCategoryAction = async (data: ICategory) => {
 }
 
 export const handleUpdateCategoryAction = async (data: ICategory) => {
-    const res = await fetch(`${process.env.BE_URL}/categories/${data._id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/categories/${data._id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -51,7 +51,7 @@ export const handleUpdateCategoryAction = async (data: ICategory) => {
 }
 
 export const handleDeleteCategoryAction = async (id: string) => {
-    const res = await fetch(`${process.env.BE_URL}/categories/${id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/categories/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

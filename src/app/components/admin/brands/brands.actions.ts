@@ -3,8 +3,8 @@ import { revalidateTag } from 'next/cache'
 import { IBrand } from '../../types/brand'
 
 export const handleGetBrands = async (): Promise<IBrand[]> => {
-    try {
-      const res = await fetch(`${process.env.BE_URL}/brands`, {
+  try {
+      const res = await fetch(`https://duong211404.onrender.com/brands`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ export const handleGetBrands = async (): Promise<IBrand[]> => {
   };
 
 export const handleCreateBrandAction = async (data: IBrand) => {
-    const res = await fetch(`${process.env.BE_URL}/brands`, {
+    const res = await fetch(`https://duong211404.onrender.com/brands`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -38,7 +38,7 @@ export const handleCreateBrandAction = async (data: IBrand) => {
 }
 
 export const handleUpdateBrandAction = async (data: IBrand) => {
-    const res = await fetch(`${process.env.BE_URL}/brands/${data._id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/brands/${data._id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -51,7 +51,7 @@ export const handleUpdateBrandAction = async (data: IBrand) => {
 }
 
 export const handleDeleteBrandAction = async (id: string) => {
-    const res = await fetch(`${process.env.BE_URL}/brands/${id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/brands/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

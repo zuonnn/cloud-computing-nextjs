@@ -1,7 +1,7 @@
 import styles from "../../../components/admin/products/products.module.css"
 
 const DetailProductPage = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`${process.env.BE_URL}/products/${params.id}`,
+    const res = await fetch(`https://duong211404.onrender.com/products/${params.id}`,
         {
             method: "GET",
             next: { tags: ["product-detail"] }

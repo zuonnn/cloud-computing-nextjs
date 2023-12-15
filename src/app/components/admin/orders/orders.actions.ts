@@ -3,7 +3,7 @@ import { revalidateTag } from 'next/cache'
 import { IOrder } from '../../types/order'
 
 export const handleGetOrders = async () => {
-    const res = await fetch(`${process.env.BE_URL}/orders`,
+    const res = await fetch(`https://duong211404.onrender.com/orders`,
         {
             method: "GET",
             next: { tags: ["list-orders"] }
@@ -14,7 +14,7 @@ export const handleGetOrders = async () => {
 
 export async function handleCreateOrderAction(orderData: IOrder): Promise<boolean> {
     try {
-      const response = await fetch(`${process.env.BE_URL}/orders`, {
+      const response = await fetch(`https://duong211404.onrender.com/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export async function handleCreateOrderAction(orderData: IOrder): Promise<boolea
   
 
 export const handleUpdateOrderAction = async (data: IOrder) => {
-    const res = await fetch(`${process.env.BE_URL}/orders/${data._id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/orders/${data._id}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -52,7 +52,7 @@ export const handleUpdateOrderAction = async (data: IOrder) => {
 }
 
 export const handleDeleteOrderAction = async (id: string) => {
-    const res = await fetch(`${process.env.BE_URL}/orders/${id}`, {
+    const res = await fetch(`https://duong211404.onrender.com/orders/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

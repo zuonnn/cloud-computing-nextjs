@@ -1,7 +1,7 @@
 import styles from "../../../components/admin/categories/categories.module.css"
 
 const DetailCategoryPage = async ({ params }: { params: { id: string } }) => {
-    const res = await fetch(`${process.env.BE_URL}/categories/${params.id}`,
+    const res = await fetch(`https://duong211404.onrender.com/categories/${params.id}`,
         {
             method: "GET",
             next: { tags: ["category-detail"] }
