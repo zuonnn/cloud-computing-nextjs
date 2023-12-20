@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import jwt from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 import { IProduct } from "../components/types/product";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const UserPage = () => {
   const router = useRouter();
@@ -51,11 +53,17 @@ const UserPage = () => {
         {products.map((product, index) => (
           <div key={index} className="col-md-3 mb-4">
             <div>
-              <h3>{product.name}</h3>
-              <img
+              <h3>
+                <Link
+                  href={`/user/${product._id}`}>
+                  {product.name}
+                </Link>
+              </h3>
+              <Image
                 src={product.image}
                 alt="product image"
-                style={{ width: '200px', height: '200px' }}
+                width={200}
+                height={200}
               />
               <p>Price: {product.price} VND</p>
             </div>

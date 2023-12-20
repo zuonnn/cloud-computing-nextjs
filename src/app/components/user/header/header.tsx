@@ -6,7 +6,7 @@ import { handleGetCategories } from '../../admin/categories/categories.actions';
 import { handleGetBrands } from '../../admin/brands/brands.actions';
 import { ICategory } from '../../types/category';
 import { IBrand } from '../../types/brand';
-import { MdLogout } from 'react-icons/md';
+import { MdLogout, MdOutlineShoppingCart } from 'react-icons/md';
 import {useRouter } from 'next/navigation';
 
 const Header = () => {
@@ -38,14 +38,13 @@ const Header = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/user">
           <Image src="/logo.png" alt="ATN-logo" width="50" height="50" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="/user">Home</Nav.Link>
             <NavDropdown title="Categories" id="categories-dropdown">
               {categories.map((category) => (
                 <NavDropdown.Item key={category._id} href={`#${category._id}`}>
@@ -62,6 +61,9 @@ const Header = () => {
             </NavDropdown>
           </Nav>
           <Nav>
+            <Nav.Link href='/user/cart'>
+              <MdOutlineShoppingCart />
+            </Nav.Link>
             <Nav.Link onClick={handleLogout}>
               <MdLogout /> Logout
             </Nav.Link>

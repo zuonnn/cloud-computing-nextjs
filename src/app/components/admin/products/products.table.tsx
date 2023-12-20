@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { handleDeleteProductAction } from "./products.actions"
 import Link from "next/link"
 import UpdateProductModal from "./update.product"
+import Image from "next/image"
 
 interface IProps {
     products: IProduct[] | []
@@ -68,7 +69,7 @@ const ProductsTable = (props: IProps) => {
                             </td>
                             <td>{product.type}</td>
                             <td>{product.price}</td>
-                            <td><img src={product.image} alt="product image" width={150} height={100}/></td>
+                            <td><Image src={product.image} alt="product image" width={150} height={100}/></td>
                             <td>{product.category.name}</td>
                             <td>{product.brand.name}</td>
                             <td>

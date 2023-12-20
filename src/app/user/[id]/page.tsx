@@ -1,7 +1,6 @@
 import Image from "next/image";
-import styles from "../../../components/admin/products/products.module.css"
 
-const DetailProductPage = async ({ params }: { params: { id: string } }) => {
+const UserProductDetail = async ({ params }: { params: { id: string } }) => {
     const res = await fetch(`https://duong211404.onrender.com/products/${params.id}`,
         {
             method: "GET",
@@ -13,20 +12,18 @@ const DetailProductPage = async ({ params }: { params: { id: string } }) => {
     const product = await res.json();
 
     return (
-        <div className={styles.container}>
+        <div className='container'>
             <p>Product Name: {product.name}</p>
-            <p>Product Type: {product.type}</p>
-            <p>Product Price: {product.price}</p>
-            <p>Product Brand: {product.brand.name}</p>
-            <p>Product Category: {product.category.name}</p>
             <Image
                 src={product.image}
                 alt="product image"
                 width={300}
                 height={300}
               />
+            <p>Product Price: {product.price}</p>
         </div>
+        
     )
 };
 
-export default DetailProductPage;
+export default UserProductDetail;
