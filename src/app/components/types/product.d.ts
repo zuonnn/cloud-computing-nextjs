@@ -6,6 +6,7 @@ export interface IProduct {
     name: string;
     type: string;
     price: number;
+    image: string;
     category: ICategory;
     brand: IBrand;
 }

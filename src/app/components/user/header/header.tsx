@@ -1,40 +1,75 @@
-import Link from 'next/link';
-import Image from "next/image";
-import styles from './header.module.css'
+'use client'
+import { Container, Nav, NavDropdown, Navbar } from 'react-bootstrap';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { handleGetCategories } from '../../admin/categories/categories.actions';
+import { handleGetBrands } from '../../admin/brands/brands.actions';
+import { ICategory } from '../../types/category';
+import { IBrand } from '../../types/brand';
+import { MdLogout } from 'react-icons/md';
+import {useRouter } from 'next/navigation';
 
 const Header = () => {
+  const router = useRouter();
+  const [categories, setCategories] = useState<ICategory[]>([]);
+  const [brands, setBrands] = useState<IBrand[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedCategories: ICategory[] = await handleGetCategories();
+        const fetchedBrands: IBrand[] = await handleGetBrands();
+        setCategories(fetchedCategories);
+        setBrands(fetchedBrands);
+      } catch (error) {
+        console.error('Error fetching categories and brands:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    // Xóa token từ localStorage
+    localStorage.removeItem('token');
+    router.push('/');
+  };
+
   return (
-    <div className={styles.container}>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">Navbar</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </div>
-  )
-}
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="#home">
+          <Image src="/logo.png" alt="ATN-logo" width="50" height="50" />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Link</Nav.Link>
+            <NavDropdown title="Categories" id="categories-dropdown">
+              {categories.map((category) => (
+                <NavDropdown.Item key={category._id} href={`#${category._id}`}>
+                  {category.name}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+            <NavDropdown title="Brands" id="brands-dropdown">
+              {brands.map((brand) => (
+                <NavDropdown.Item key={brand._id} href={`#${brand._id}`}>
+                  {brand.name}
+                </NavDropdown.Item>
+              ))}
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link onClick={handleLogout}>
+              <MdLogout /> Logout
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default Header;

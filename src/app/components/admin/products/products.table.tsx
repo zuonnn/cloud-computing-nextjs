@@ -50,6 +50,7 @@ const ProductsTable = (props: IProps) => {
                         <th>Product</th>
                         <th>Type</th>
                         <th>Price</th>
+                        <th>Image</th>
                         <th>Category</th>
                         <th>Brand</th>
                         <th>Action</th>
@@ -67,6 +68,7 @@ const ProductsTable = (props: IProps) => {
                             </td>
                             <td>{product.type}</td>
                             <td>{product.price}</td>
+                            <td><img src={product.image} alt="product image" width={150} height={100}/></td>
                             <td>{product.category.name}</td>
                             <td>{product.brand.name}</td>
                             <td>

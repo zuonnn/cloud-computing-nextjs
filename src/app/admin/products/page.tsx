@@ -1,4 +1,9 @@
+import { Metadata } from 'next';
 import ProductsTable from '../../components/admin/products/products.table';
+
+export const metadata: Metadata = {
+    title: "Product Page"
+}
 
 const ProductsPage = async () => {
     const res = await fetch(`https://duong211404.onrender.com/products`,

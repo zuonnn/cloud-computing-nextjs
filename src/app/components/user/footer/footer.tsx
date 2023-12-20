@@ -2,8 +2,8 @@ import styles from './footer.module.css'
 
 const Footer = () => {
     return (
-        <div>
-            Footer
+        <div className={styles.footer}>
+            © Powered by DuongTN
         </div>
     )
 }

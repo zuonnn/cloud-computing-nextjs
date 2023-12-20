@@ -1,5 +1,9 @@
+import { Metadata } from 'next';
 import BrandsTable from '../../components/admin/brands/brands.table';
 
+export const metadata: Metadata = {
+    title: "Brand Page"
+}
 
 const BrandsPage = async () => {
     const res = await fetch(`https://duong211404.onrender.com/brands`,
@@ -13,7 +17,6 @@ const BrandsPage = async () => {
     }
 
     const data = await res.json();
-
     return (
         <div>
             <BrandsTable

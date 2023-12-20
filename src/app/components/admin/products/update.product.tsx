@@ -27,11 +27,12 @@ function UpdateProductModal(props: IProps) {
     const [name, setName] = useState<string>("");
     const [type, setType] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
+    const [image, setImage] = useState<string>("");
     const [category, setCategory] = useState<ICategory | null>(null);
     const [brand, setBrand] = useState<IBrand | null>(null);
 
     const handleSubmit = async () => {
-        if (!name || !type || !price || !category || !brand) {
+        if (!name || !type || !price || !image || !category || !brand) {
             toast.error("All fields are required!");
             return;
         }
@@ -41,6 +42,7 @@ function UpdateProductModal(props: IProps) {
             name,
             type,
             price,
+            image,
             category: category || null,
             brand: brand || null,
         };
@@ -58,6 +60,7 @@ function UpdateProductModal(props: IProps) {
         setName("");
         setType("");
         setPrice(0);
+        setImage("");
         setCategory(null);
         setBrand(null);
         setProduct(null);
@@ -81,6 +84,7 @@ function UpdateProductModal(props: IProps) {
             setName(productUpdate.name || '');
             setType(productUpdate.type || '');
             setPrice(productUpdate.price || 0);
+            setImage(productUpdate.image || '');
             setCategory(productUpdate.category || null);
             setBrand(productUpdate.brand || null);
         }
@@ -121,6 +125,14 @@ function UpdateProductModal(props: IProps) {
                                 type="text"
                                 value={type}
                                 onChange={(e) => setType(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3" >
+                            <Form.Label className="text-black">Image</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={image}
+                                onChange={(e) => setImage(e.target.value)}
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" >

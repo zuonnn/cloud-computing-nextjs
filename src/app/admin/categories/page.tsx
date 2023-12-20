@@ -1,5 +1,9 @@
+import { Metadata } from 'next';
 import CategoriesTable from '../../components/admin/categories/categories.table';
 
+export const metadata: Metadata = {
+    title: "Category Page"
+}
 
 const CategoriesPage = async() => {
     const res = await fetch(`https://duong211404.onrender.com/categories`, 
