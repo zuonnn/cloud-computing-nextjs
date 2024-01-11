@@ -23,37 +23,28 @@ const Home = () => {
     try {
       const response = await fetch('https://duong211404.onrender.com/auth/login', {
         method: 'POST',
-        body: JSON.stringify(account),
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(account),
       });
 
       if (response.ok) {
         const data = await response.json();
         console.log(data);
 
-        // Lưu trữ JWT vào localStorage sau khi đăng nhập thành công
-        Cookies.set('token', data.token);
+        const userRole = data.user.role;
 
-        // Kiểm tra và điều hướng người dùng dựa trên token
-        const token = Cookies.get('token');
-        if (token) {
-          try {
-            const decodedToken = jwt.decode(token) as { role: string } | null;
-            if (decodedToken) {
-              const userRole = decodedToken.role;
+        Cookies.set('access_token', data.access_token, { secure: true, httpOnly: true });
+        Cookies.set('refresh_token', data.refresh_token, { secure: true, httpOnly: true });
 
-              if (userRole === 'Admin') {
-                router.push('/admin')
-              } else if (userRole === 'User') {
-                router.push('/user')
-              }
-            }
-          } catch (error) {
-            console.error('Error decoding token:', error);
-          }
+        if (userRole === 'Admin') {
+          router.push('/admin');
+        } else if (userRole === 'User') {
+          router.push('/user');
         }
+      } else {
+        console.error('Login failed:', response.statusText);
       }
     } catch (error) {
       console.error('Login failed:', error);
